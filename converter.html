@@ -72,6 +72,7 @@ let text = document.getElementById('output').value
 const copyContent = async () => {
   try {
     await navigator.clipboard.writeText(text);
+    alert('copied')
     
   } catch (err) {
     console.log('failed to copy: ' + err);
