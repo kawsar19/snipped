@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <link rel="stylesheet" href="tailwind.min.css">
+</head>
+
+<body>
+  <div class="container mx-auto px-4">
+    <div>
+
+      <label for="code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+      <textarea id="code" rows="4" class="block p-2.5 w-full text-sm text-gray-900 outline-none bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+
+    </div>
+
+    <div class="mt-5">
+
+      <button type="button" class=" w-full text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-3 text-center mr-2 mb-2" onclick="convert()">convert</button>
+
+      <button type="button" class=" mt-5 w-full text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-3 text-center mr-2 mb-2" onclick="copy()">copy</button>
+
+
+
+
+    </div>
+
+    <hr>
+
+    <textarea id="output" rows="4" class="block p-2.5 w-full text-sm text-gray-900 outline-none bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+  </div>
+
+  <script>
+    let code = document.getElementById('code')
+    let output = document.getElementById('output')
+
+    function convert() {
+      var getCode = code.value;
+      var repleced = getCode.replaceAll(`"`, `'`)
+      code.value = repleced;
+    //  console.log(repleced)
+
+      repleced = repleced.replace(/[\r\n]/gm, '');
+      repleced = repleced.replace(/[\t ]+\</g, "<");
+      repleced = repleced.replace(/\>[\t ]+\</g, "><");
+      repleced = repleced.replace(/\>[\t ]+$/g, ">");
+
+
+     // console.log(repleced); // 👉️ a multi line string !console
+
+
+
+
+
+
+      let makeobj = `{"code":"${repleced}"},
+`
+      output.value += makeobj
+
+      code.value = ''
+
+    }
+
+    function copy() {
+      alert(8)
+let text = document.getElementById('output').value
+console.log(text)
+const copyContent = async () => {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert('copied');
+  } catch (err) {
+    console.log('failed to copy: ' + err);
+  }
+}
+    }
+  </script>
+</body>
+
+</html>
