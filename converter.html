@@ -72,11 +72,12 @@ console.log(text)
 const copyContent = async () => {
   try {
     await navigator.clipboard.writeText(text);
-    alert('copied');
+    
   } catch (err) {
     console.log('failed to copy: ' + err);
   }
 }
+copyContent()
     }
   </script>
 </body>
