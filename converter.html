@@ -66,9 +66,9 @@
     }
 
     function copy() {
-   
+      
 let text = document.getElementById('output').value
-console.log(text)
+
 const copyContent = async () => {
   try {
     await navigator.clipboard.writeText(text);
